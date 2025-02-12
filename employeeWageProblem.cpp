@@ -6,20 +6,14 @@ using namespace std;
 // UC-1: Check Attendance
 
 int checkAttendance(){
-
-    // srand(seed): function to generate different random number each time.
-    // seed: is an integer used to intialize the random number generator.
-    // time(0): returns the current time in seconds.
-
-    srand(time(0));
     
     int attendance = rand() % 2; // rand() function to generate random number between 0 and 1
 
     if(attendance == 1){
-        cout << "\nEmployee is Present\n";
+        cout << "\nEmployee is Present";
     }
     else{
-        cout << "\nEmployee is Absent\n";
+        cout << "\nEmployee is Absent";
     }
     
     return attendance;
@@ -61,16 +55,66 @@ int checkPartTimeWage(){
     }
 }
 
+// UC-5: Check Monthly Wages
+
+int checkMonthlyWages(){
+
+    int workingDayPerMonth = 20, wagesPerHour = 20, fullDayHours = 8, partTimeHours = 8;
+    int totalWages = 0;
+
+    for(int i = 1; i <= workingDayPerMonth; i++){ // Loop to calculate wages for 20 days
+
+        int fullDayStatus = checkAttendance();
+        int fullDayWages = 0;
+
+        if(fullDayStatus == 1){
+
+            fullDayWages = wagesPerHour * fullDayHours; // Calculate full day wages for particular day
+            totalWages += fullDayWages; // Add wages to total wage
+
+            cout << "\nYour Day " << i << " full day wages are: " << fullDayWages;
+        }
+        else{
+            cout << "\nYour Day " << i << " full day wages are: " << fullDayWages;
+        }
+
+        int partTimeStatus = checkAttendance();
+        int partTimeWages = 0;
+
+        if(partTimeStatus == 1){
+
+            partTimeWages = wagesPerHour * partTimeHours; // Calculate part-time wages for particular day
+            totalWages += partTimeWages; // Add wages to total wage
+
+            cout << "\nYour Day " << i << " part-time wages are: " << partTimeWages;
+        }
+        else{
+            cout << "\nYour Day " << i << " part-time wages are: " << partTimeWages;
+        }
+
+        cout << "\n";
+    }
+
+    return totalWages;
+}
+
 int main(){
+
+    // srand(seed): function to generate different random number each time.
+    // seed: is an integer used to intialize the random number generator.
+    // time(0): returns the current time in seconds.
+
+    srand(time(0));
 
     cout << "\n-------------------- Welcome to Employee Wage Computation Program --------------------\n";
 
     cout << "\nEnter 0 to exit";
     cout << "\nEnter 1 to check attendance";
     cout << "\nEnter 2 to check daily wage";
-    cout << "\nEnter 3 to check part-time wage\n";
+    cout << "\nEnter 3 to check part-time wage";
+    cout << "\nEnter 4 to check monthly wages\n";
 
-    int choice, fullDayWage, partTimeWage;
+    int choice, fullDayWage, partTimeWage, totalWage;
 
     cout << "\nEnter your choice: ";
     cin >> choice;
@@ -97,8 +141,13 @@ int main(){
             cout << "\nYour part-time wage is: " << partTimeWage << "\n";
             break;
 
+        case 4:
+            totalWage = checkMonthlyWages(); // function call to check monthly wages
+            cout << "\nYour total wages are: " << totalWage;
+            break;
+
         default:
-            cout << "\nInvalid Choice!, Please enter form above choices.";
+            cout << "\nInvalid Choice!, Please enter from above choices.";
             break;
     }
 
