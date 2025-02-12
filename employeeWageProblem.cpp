@@ -65,28 +65,41 @@ int main(){
 
     cout << "\n-------------------- Welcome to Employee Wage Computation Program --------------------\n";
 
+    cout << "\nEnter 0 to exit";
     cout << "\nEnter 1 to check attendance";
     cout << "\nEnter 2 to check daily wage";
     cout << "\nEnter 3 to check part-time wage\n";
 
-    int choice;
+    int choice, fullDayWage, partTimeWage;
 
     cout << "\nEnter your choice: ";
     cin >> choice;
 
-    if(choice == 1){
-        checkAttendance(); // function call to check whether employee is present or absent
-    }
-    else if(choice == 2){
-        int fullDayWage = checkDailyWage(); 
-        cout << "\nYour daily wage is: " << fullDayWage << "\n"; 
-    }
-    else if(choice == 3){
-        int partTimeWage = checkPartTimeWage();
-        cout << "\nYour part-time wage is: " << partTimeWage << "\n";
-    }
-    else{
-        cout << "\nThank You for joining";
+    // UC4: Switch - Case Implementation
+
+    switch(choice){
+
+        case 0:
+            cout << "\nExiting the Program, Thank You for Joining.";
+            break;
+
+        case 1: 
+            checkAttendance(); // function call to check whether employee is present or absent
+            break;
+
+        case 2: 
+            fullDayWage = checkDailyWage(); // function call to check full day wage
+            cout << "\nYour daily wage is: " << fullDayWage << "\n";
+            break;
+
+        case 3:
+            partTimeWage = checkPartTimeWage(); // function call to check part-time wage
+            cout << "\nYour part-time wage is: " << partTimeWage << "\n";
+            break;
+
+        default:
+            cout << "\nInvalid Choice!, Please enter form above choices.";
+            break;
     }
 
     return 0;
