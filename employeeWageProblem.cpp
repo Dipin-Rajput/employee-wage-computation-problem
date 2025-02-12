@@ -75,7 +75,7 @@ int main(){
     cout << "\nEnter your choice: ";
     cin >> choice;
 
-    // UC4: Switch - Case Implementation
+    // UC-4: Switch - Case Implementation
 
     switch(choice){
 
