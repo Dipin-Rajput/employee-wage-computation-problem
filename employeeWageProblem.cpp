@@ -98,6 +98,53 @@ int checkMonthlyWages(){
     return totalWages;
 }
 
+// UC-6: Wages till a Condition of total working hours or days is reached for a month
+
+int wagesTillCondition(){
+
+    int maxWorkingDays = 20, maxWorkingHours = 100, fullDayHours = 8, partTimeHours = 8, wagePerHour = 20;
+    int totalDays = 1;
+    int totalHours = 0;
+    int totalWages = 0;
+
+    while(totalHours <= maxWorkingHours && totalDays <= maxWorkingDays){ // Loop to calculate wages for 100 hours and 20 days
+
+        int fullDayStatus = checkAttendance();
+
+        if(fullDayStatus == 1){
+
+            totalHours += fullDayHours;
+            totalWages += fullDayHours * wagePerHour; // Add full day wage to total wage
+
+            cout << "\nYour Day " << totalDays << " full day wages are: " << fullDayHours * wagePerHour;
+        }
+        else{
+            cout << "\nYour Day " << totalDays << " full day wages are: " << 0;
+        }
+
+        int partTimeStatus = checkAttendance();
+
+        if(partTimeStatus == 1){
+
+            totalHours += partTimeHours;
+            totalWages += partTimeHours * wagePerHour; // Add part-time wage to total wage
+
+            cout << "\nYour Day " << totalDays << " part-time wages are: " << partTimeHours * wagePerHour;
+        }
+        else{
+            cout << "\nYour Day " << totalDays << " part-time wages are: " << 0;
+        }
+
+        totalDays += 1;
+
+        cout << "\n";
+    }
+
+    return totalWages;
+}
+
+// Main
+
 int main(){
 
     // srand(seed): function to generate different random number each time.
@@ -112,7 +159,8 @@ int main(){
     cout << "\nEnter 1 to check attendance";
     cout << "\nEnter 2 to check daily wage";
     cout << "\nEnter 3 to check part-time wage";
-    cout << "\nEnter 4 to check monthly wages\n";
+    cout << "\nEnter 4 to check monthly wages";
+    cout << "\nEnter 5 to check wages till condition\n";
 
     int choice, fullDayWage, partTimeWage, totalWage;
 
@@ -144,6 +192,11 @@ int main(){
         case 4:
             totalWage = checkMonthlyWages(); // function call to check monthly wages
             cout << "\nYour total wages are: " << totalWage;
+            break;
+
+        case 5:
+            totalWage = wagesTillCondition(); // function call to check wages till condition met
+            cout << "\nYour total wages based on condition are: " << totalWage;
             break;
 
         default:
