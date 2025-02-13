@@ -215,7 +215,7 @@ int main(){
 
     cout << "\n-------------------- Welcome to Employee Wage Computation Program --------------------\n";
 
-    while(true){ // Loop for repeatitive input
+    while(true){ // Loop for repetitive input
 
         employee.switchCase();
 
